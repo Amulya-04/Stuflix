@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/Signup/Signup";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import SearchResults from "./pages/SearchResults/SearchResults";
+import Category from "./pages/Category/Category";
+import FilmDetails from "./pages/FilmDetails/FilmDetails";
+import UploadFilm from "./pages/UploadFilm/UploadFilm";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import Player from "./pages/Player/Player";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Default redirect to home */}
+        <Route path="/" element={<Navigate to="/home" />} />
+
+        {/* Public Pages */}
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* User Pages */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/category/:name" element={<Category />} />
+        <Route path="/film-details" element={<FilmDetails />} />
+        <Route path="/player/:id" element={<Player />} />
+
+        {/* Admin Pages */}
+        <Route path="/upload-film" element={<UploadFilm />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
